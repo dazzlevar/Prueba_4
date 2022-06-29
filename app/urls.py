@@ -1,7 +1,15 @@
-from django.urls import path
-from .views import home, registro, contacto, agregar_producto, listar_productos, \
+from django.db import router
+from django.urls import path, include
+from .views import SuscripcionViewset, home, registro, contacto, agregar_producto, listar_productos, \
     modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, \
-    historial, direcciones, cupones, metodos_de_pago, despacho, pago
+    historial, direcciones, cupones, metodos_de_pago, despacho, pago, agregar_sub, \
+    listar_sub, eliminar_sub
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('suscripcion', SuscripcionViewset)
+
+
 
 urlpatterns = [
     path('', home, name = "home"),
@@ -21,4 +29,9 @@ urlpatterns = [
     path('settings/despacho/', despacho, name = 'despacho'),
     path('pagar', pagar, name = 'pagar'),
     path('pago', pago, name = 'pago'),
+    path('agregar-sub/', agregar_sub, name = "agregar_sub"),
+    path('listar-sub/', listar_sub, name = 'listar_sub'),
+    path('eliminar-sub/<id>/', eliminar_sub, name = "eliminar_sub"),
+    path('api/', include(router.urls)),
+
 ]

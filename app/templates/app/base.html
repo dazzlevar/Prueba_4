@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,11 +44,9 @@
             <img class="logo" src="{% static 'img/logo.png' %}" alt="logo">
             <a href="{% url 'home' %}" style="color:black;"><h2 style="color:white;">Abstracta</h2></a>
             <p class="reloj" id="reloj"></p>
-            <!-- <div id="contenedor__carrito">
-            </div> -->
         </div>
         <div>
-            <nav class="h5" id="nav">
+            <nav class="h5 text-center" id="nav">
                 <ul>
                     <li><a href="{% url 'home' %}"> Inicio </a></li>
                     <li><a href="{% url 'clima' %}"> Clima </a></li>
@@ -60,6 +57,9 @@
                     {% endif %}
                     {% if perms.app.view_producto %}
                     <li><a href="{% url 'listar_productos' %}">Listado Productos</a></li>
+                    {% endif %}
+                    {% if perms.app.view_sub %}
+                    <li><a href="{% url 'listar_sub' %}">Listado Suscriptores</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'settings' %}">Configuraciones</a></li>
@@ -85,6 +85,13 @@
             <a class="icon icon__twitter" href="#" ><i class="bi bi-twitter"></i></a>
             <a class="icon icon__github" href="#" ><i class="bi bi-github"></i></a>
             <a class="icon icon__subir" href="#"><i class="bi bi-arrow-bar-up"></i></a>
+        </div>
+        <hr class="container" style="width:250px;">
+        <div class="text-center fs-5">
+            <ul>
+                <p>Creado por 01001100 01101111 01110011 00100000 01100011 01101000 01101111 01110010 <br>
+                     01101111 01110011 00100000 01111001 00100000 01101011 01100101 00100000 01110111 01100001®</p>
+            </ul>
         </div>
         <a href="#" class="subir"></a>
     </footer>

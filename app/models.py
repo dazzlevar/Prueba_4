@@ -56,3 +56,18 @@ class Datos(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Tipo_sub(models.Model):
+    tipo=models.CharField(max_length=50, verbose_name="Nombre del tipo de Suscripcion")
+
+    def __str__(self):
+        return self.tipo
+
+
+class Suscripcion(models.Model):
+    rut = models.CharField(max_length=9)
+    nombre = models.CharField(max_length=50)
+    tipo = models.ForeignKey(Tipo_sub, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.rut

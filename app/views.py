@@ -1,12 +1,20 @@
 from pprint import pp
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto
-from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm
+from .models import Producto, Tipo_sub, Suscripcion
+from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
+from rest_framework import viewsets
+from .serializers import SuscripcionSerializer
+
+
+class SuscripcionViewset(viewsets.ModelViewSet):
+    queryset = Suscripcion.objects.all()
+    serializer_class = SuscripcionSerializer
+
 
 def home(request):
     return render(request, 'app/home.html')
@@ -150,3 +158,42 @@ def pago(request):
             data["form"] = formulario
 
     return render(request, 'app/pago/pago.html', data)
+
+def agregar_sub(request):
+    data = {
+        'form': SubForm()
+    }
+    if request.method == 'POST':
+        formulario = SubForm(data = request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Te has suscrito con exito!")
+            return redirect(to = "home")
+        else:
+            data["form"] = formulario
+    return render(request, 'app/suscripcion/agregar.html', data)
+
+@permission_required('app.view_sub')
+def listar_sub(request):
+    suscripciones = Suscripcion.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(suscripciones, 7)
+        suscripciones = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'sub': suscripciones,
+        'paginator' : paginator
+    }
+    return render(request, 'app/suscripcion/listar.html', data)
+
+@permission_required('app.delete_sub')
+def eliminar_sub(request, id):
+    suscripcion = get_object_or_404(Suscripcion, id = id)
+    suscripcion.delete()
+    messages.success(request, "Se ha eliminado con exito!!")
+    return redirect(to = "listar_sub")
+
