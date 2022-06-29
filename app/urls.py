@@ -4,6 +4,7 @@ from .views import SuscripcionViewset, home, registro, contacto, agregar_product
     modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, \
     historial, direcciones, cupones, metodos_de_pago, despacho, pago, agregar_sub, \
     listar_sub, eliminar_sub
+from .viewsLogin import login
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -33,5 +34,5 @@ urlpatterns = [
     path('listar-sub/', listar_sub, name = 'listar_sub'),
     path('eliminar-sub/<id>/', eliminar_sub, name = "eliminar_sub"),
     path('api/', include(router.urls)),
-
+    path('login', login, name="login"),
 ]

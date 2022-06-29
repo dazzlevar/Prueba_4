@@ -8,12 +8,17 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from rest_framework import viewsets
-from .serializers import SuscripcionSerializer
+from .serializers import SuscripcionSerializer, Tipo_subSerializer
 
 
 class SuscripcionViewset(viewsets.ModelViewSet):
     queryset = Suscripcion.objects.all()
     serializer_class = SuscripcionSerializer
+
+class Tipo_subViewset(viewsets.ModelViewSet):
+    queryset = Tipo_sub.objects.all()
+    serializer_class = Tipo_subSerializer
+
 
 
 def home(request):
