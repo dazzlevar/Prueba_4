@@ -1,0 +1,17 @@
+{% extends 'app/settings/settings_base_2.html' %}
+{% load static %}
+{% block title %}Métodos de pago{% endblock title %}
+{% block contenido %}
+<div class="agrupacion">
+    <div class="configuracion__menuDir configuracion__pago">
+        <h2 class="fw-bold mb-2 text-uppercase" style="margin-top: 1rem;">Mis metodos de pago</h2>
+        <hr>
+        <div class="configuracion__marginHist"></div>
+        <div class="configuracion__btnsDire"></div>
+    </div>
+    <div class="configuracion__menuBtn_2 configuracion__btnsDire">
+        <input type="submit" class="btn btn-outline-light btn-lg px-5" value="Agregar Metodo">
+        <input type="submit" class="btn btn-outline-light btn-lg px-5 btnGuardar" value="Guardar">
+    </div>
+</div>
+{% endblock %}

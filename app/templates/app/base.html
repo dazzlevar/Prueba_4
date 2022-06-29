@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %} - Tiendita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'node_modules/jquery/dist/jquery.js' %}"></script>
+    <script src="{% static 'js/clock.js' %}"></script>
+
+    <!-- MomentJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/es-mx.min.js"></script>
+
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap-icons/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/bxslider/dist/jquery.bxslider.css' %}">
+    <link rel="preload" href="{% static 'css/normalize2.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/normalize2.css' %}">
+    <link rel="preload" href="{% static 'css/stail.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/stail.css' %}">
+    <link rel="preload" href="{% static 'css/estilos3.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/estilos3.css' %}">
+    <link rel="preload" href="{% static 'css/estail.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/estail.css' %}">
+    <link rel="preload" href="{% static 'css/stail3_2.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/stail3_2.css' %}">
+    <link rel="preload" href="{% static 'css/responsive_4_1.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/responsive_4_1.css' %}">
+
+    {% endblock %}
+</head>
+<body class="gradient-custom">
+    <header id="header">
+        <img class="menu" id="menu" src="/static/img/menuiconwhite.png" alt="menu">
+        <div class="contenedor_logo">
+            <img class="logo" src="{% static 'img/logo.png' %}" alt="logo">
+            <a href="{% url 'home' %}" style="color:black;"><h2 style="color:white;">Abstracta</h2></a>
+            <p class="reloj" id="reloj"></p>
+            <!-- <div id="contenedor__carrito">
+            </div> -->
+        </div>
+        <div>
+            <nav class="h5" id="nav">
+                <ul>
+                    <li><a href="{% url 'home' %}"> Inicio </a></li>
+                    <li><a href="{% url 'clima' %}"> Clima </a></li>
+                    <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                    <li><a href="{% url 'catalogo' %}">Nuestros Productos!</a></li>
+                    {% if perms.app.add_producto %}
+                    <li><a href="{% url 'agregar_producto' %}">Agregar producto</a></li>
+                    {% endif %}
+                    {% if perms.app.view_producto %}
+                    <li><a href="{% url 'listar_productos' %}">Listado Productos</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'settings' %}">Configuraciones</a></li>
+                    <li><a href="{% url 'logout' %}">Cerrar sesion</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                    <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+    
+    <div id="contenido">
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="icons footer__align">
+            <a class="icon icon__instagram" href="#"><i class="bi bi-instagram"></i></a>
+            <a class="icon icon__twitter" href="#" ><i class="bi bi-twitter"></i></a>
+            <a class="icon icon__github" href="#" ><i class="bi bi-github"></i></a>
+            <a class="icon icon__subir" href="#"><i class="bi bi-arrow-bar-up"></i></a>
+        </div>
+        <a href="#" class="subir"></a>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+                "tittle": "Felicitaciones",
+                "text": "{{m}}",
+                "icon": "success"
+            })
+        </script>
+    {% endfor %}
+    {% endif %}
+
+    {% block js %}
+        <script>
+            let menu = document.getElementById("menu")
+            let header = document.getElementById("header")
+            let nav = document.getElementById("nav")
+            menu.addEventListener("click", function () {
+                if (header.style.height == "60px" || header.offsetHeight == 60) {
+                    header.style.height = 60 + nav.offsetHeight + "px"
+                } else {
+                    header.style.height = "60px"
+                }
+            });
+
+            window.addEventListener("resize", function () {
+                let anchoVentana = document.documentElement.clientWidth
+                if (anchoVentana > 480) {
+                    header.style = "none"
+                }
+            });
+        </script>
+    {% endblock %}
+</body>
+</html>
