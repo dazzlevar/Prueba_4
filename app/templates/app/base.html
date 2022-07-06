@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="{% static 'node_modules/bxslider/dist/jquery.bxslider.css' %}">
     <link rel="preload" href="{% static 'css/normalize2.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/normalize2.css' %}">
-    <link rel="preload" href="{% static 'css/stail.css' %}" as="style">
-    <link rel="stylesheet" href="{% static 'css/stail.css' %}">
+    <link rel="preload" href="{% static 'css/styless.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/styless.css' %}">
     <link rel="preload" href="{% static 'css/estilos3.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/estilos3.css' %}">
     <link rel="preload" href="{% static 'css/estail.css' %}" as="style">
@@ -44,12 +44,13 @@
             <img class="logo" src="{% static 'img/logo.png' %}" alt="logo">
             <a href="{% url 'home' %}" style="color:black;"><h2 style="color:white;">Abstracta</h2></a>
             <p class="reloj" id="reloj"></p>
+            
         </div>
         <div>
             <nav class="h5 text-center" id="nav">
                 <ul>
                     <li><a href="{% url 'home' %}"> Inicio </a></li>
-                    <li><a href="{% url 'clima' %}"> Clima </a></li>
+                    <li><a href="{% url 'clima' %}" data-bs-toggle="modal" data-bs-target="#ModalClima"> Clima </a></li>{% include "app/clima.html" %} 
                     <li><a href="{% url 'contacto' %}">Contacto</a></li>
                     <li><a href="{% url 'catalogo' %}">Nuestros Productos!</a></li>
                     {% if perms.app.add_producto %}
@@ -68,7 +69,11 @@
                     <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
                     <li><a href="{% url 'registro' %}">Registrarse</a></li>
                     {% endif %}
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'catalogo' %}" data-bs-toggle="modal" data-bs-target="#ModalCarro"><i class="bi bi-cart3 fs-4" style="color: white;"></i></a></li>
+                    {% endif %}
                 </ul>
+
             </nav>
             
         </div>
@@ -86,10 +91,10 @@
             <a class="icon icon__github" href="#" ><i class="bi bi-github"></i></a>
             <a class="icon icon__subir" href="#"><i class="bi bi-arrow-bar-up"></i></a>
         </div>
-        <hr class="container" style="width:250px;">
+        <hr class="container" style="width:250px; color: white;">
         <div class="text-center fs-5">
             <ul>
-                <p>Creado por 01001100 01101111 01110011 00100000 01100011 01101000 01101111 01110010 <br>
+                <p style="color: white;">Creado por 01001100 01101111 01110011 00100000 01100011 01101000 01101111 01110010 <br>
                 01101111 01110011 00100000 01111001 00100000 01101011 01100101 00100000 01110111 01100001®</p>
             </ul>
         </div>

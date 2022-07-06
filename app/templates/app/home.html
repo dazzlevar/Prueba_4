@@ -2,23 +2,27 @@
 {% load static %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
+<div style="color:honeydew;">
     {% if user.is_authenticated %}
-    <div class="welcome">
-        <h2>Bienvenido, @{{ user.username }}!</h2>
-    </div>
-    {% else %}
-    <div class="welcome">
-        <h2>Bienvenido!</h2>
-    </div>
+        <div class="welcome">
+            <h2>Bienvenido, @{{ user.username }}!</h2>
+        </div>
+        {% else %}
+        <div class="welcome">
+            <h2>Bienvenido!</h2>
+        </div>
     {% endif %}
+</div>
     <hr>
     <section class="suscribirse">
         <img src="{% static 'img/fondo.jpg' %}" alt="Foto">
         <div class="suscribirse__letras">
-            <h2 class="suscribirse__mensaje">Suscribirse a "Oni-chan", una fundación sin fines de lucro. Al suscribirse obtendrá un descuento del 5% de forma permanente uwu</h2>
+            <h2 class="suscribirse__mensaje">Suscribirse a "Oni-chan", una fundación sin fines de lucro. Al suscribirse
+                obtendrá un descuento del 5% de forma permanente uwu</h2>
         </div>
-        
-        <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
+
+        <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else
+            %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
     </section>
     <hr>
 {% endblock %}

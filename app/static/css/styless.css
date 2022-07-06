@@ -325,9 +325,9 @@ button:hover {
 }
 
 .gradient-custom {
-    background: #b2f8f9;
-    background: -webkit-linear-gradient(to right, rgb(33, 213, 198), rgb(240, 126, 55));
-    background: linear-gradient(to right, rgb(240, 126, 55), rgb(33, 213, 198))
+    background: #6656de;
+    background: -webkit-linear-gradient(to right, rgb(8, 16, 169),rgb(101, 5, 118));
+    background: linear-gradient(to right,  rgb(14, 123, 191),rgb(171, 64, 7) )
 }
 
 .login__fondo,
@@ -370,13 +370,15 @@ button:hover {
 /** Modal **/
 
 .modal-body,
-.modal-header {
+.modal-header,
+.modal-footer {
     background-color: rgb(33, 37, 41);
     color: aliceblue;
 }
 
 .modal-body,
 .modal-header,
+.modal-footer,
 .footer__botones {
     text-align: center;
 }

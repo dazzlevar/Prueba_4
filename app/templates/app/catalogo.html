@@ -6,24 +6,28 @@
 <br>
 <br>
 <br>
-<h2 class="h1">Productos de nuestra tienda!</h2>
+<h2 class="h1" style="color: honeydew;">Productos de nuestra tienda!</h2>
 <div class="container  mt-5">
     <div style="float: center;">
-        {% include "app/carro/widget.html" %}
+        {% if request.user.is_authenticated %}
+            {% include "app/carro/widget.html" %}
+        {% else %}
+            <div class="container alert alert-danger text-center fs-4 p-2 w-25 "> Para ver el Carro inicia sesion!!</div>
+        {% endif %}
     </div>
     <div class="productos">
         {% for p in productos %}
         <div class="producto d-flex justify-content-center">
-            <div class="card contenedor_producto border border-dark rounded-4"
-                style=" background-color: rgb(122, 217, 200);">
+            <div class="card contenedor_producto border border-2 border-dark"
+                style=" background-color: rgb(115, 183, 225);">
                 {% if p.imagen %}
                 <img class="card-img-top" src="{{ p.imagen.url }}" style="width:100%; padding:2%;"
                     alt="imagen producto">
                 {% endif %}
                 <!-- saque la clase ' detalle ' -->
-                <div class="card-body " style="background-color: rgb(151, 237, 236);">
+                <div class="card-body rounded" style="background-color: rgb(68, 174, 240);">
                     <h5>Categoria: {{ p.nombreCat | capfirst }}</h5>
-                    <h5>Categoria: {{ p.cantidadProducto | capfirst }}</h5>
+                    <h5>Cantidad: {{ p.cantidadProducto | capfirst }}</h5>
                     <h2>{{ p.nombreProducto | title }}</h2>
                     <h5>Descripcion: {{ p.descripcionProducto | capfirst }}</h5>
                     <h3>Precio: ${{ p.precioProducto | intcomma }}</h3>

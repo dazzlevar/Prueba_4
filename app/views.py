@@ -25,6 +25,7 @@ def home(request):
     return render(request, 'app/home.html')
 
 
+
 def catalogo(request):
     productos = Producto.objects.all()
     data = {
@@ -122,6 +123,7 @@ def eliminar_producto(request, id):
 
 def clima(request):
     return render(request, 'app/clima.html')
+
 
 def pagar(request):
     return render(request, 'app/pago/pagar.html')

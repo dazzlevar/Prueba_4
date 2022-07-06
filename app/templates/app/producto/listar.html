@@ -38,6 +38,7 @@
                 <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Categoria</th>
+                <th>Cantidad</th>
                 <th>Opciones</th>
             </tr>
             {% for p in entity %}
@@ -46,6 +47,7 @@
                 <td>{{ p.descripcionProducto | title }}</td>
                 <td>{{ p.precioProducto | intcomma }}</td>
                 <td>{{ p.nombreCat | title }}</td>
+                <td>{{ p.cantidadProducto | title }}</td>
                 <td>
                     {% if perms.app.change_producto %}
                     <a class="btn btn-info btn-sm" href="{% url 'modificar_producto' p.id %}">Modificar</a>
