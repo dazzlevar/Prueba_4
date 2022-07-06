@@ -14,7 +14,6 @@ class ContactoForm(forms.ModelForm):
         fields = '__all__'
 
 class ProductoForm(forms.ModelForm):
-
     nombreProducto = forms.CharField(min_length=3, max_length=50)
     imagen = forms.ImageField(required = False, validators=[MaxSizeFileValidator(max_file_size=6)])
     precioProducto = forms.IntegerField(min_value=1, max_value=1500000)
@@ -24,7 +23,6 @@ class ProductoForm(forms.ModelForm):
         nombreProducto = self.cleaned_data["nombreProducto"]
         existe = Producto.objects.filter(nombre__iexact=nombreProducto).exists()
 
-
         if existe:
             raise forms.ValidationError("Este nombre ya existe")
         return nombreProducto
@@ -32,8 +30,6 @@ class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = '__all__'
-    
-        
         
 class CustomUserCreationForm(UserCreationForm):
     class Meta:

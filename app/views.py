@@ -19,12 +19,8 @@ class Tipo_subViewset(viewsets.ModelViewSet):
     queryset = Tipo_sub.objects.all()
     serializer_class = Tipo_subSerializer
 
-
-
 def home(request):
     return render(request, 'app/home.html')
-
-
 
 def catalogo(request):
     productos = Producto.objects.all()
@@ -33,7 +29,6 @@ def catalogo(request):
     }
     
     return render(request, 'app/catalogo.html', data)
-
 
 def contacto(request):
     data = {
@@ -126,7 +121,18 @@ def clima(request):
 
 
 def pagar(request):
-    return render(request, 'app/pago/pagar.html')
+    data = {
+        'form': DatosForm()
+    }
+    if request.method == 'POST':
+        formulario = ProductoForm(data = request.POST)
+        if formulario.is_valid(): 
+            formulario.save()
+            messages.success(request, 'Compra realizada con exito.')
+        else:
+            data["form"] = formulario
+
+    return render(request, 'app/pago/pagar.html', data)
 
 @login_required
 def settings(request):
@@ -151,20 +157,6 @@ def metodos_de_pago(request):
 @login_required
 def despacho(request):
     return render(request, 'app/settings/settings_despacho.html')
-
-def pago(request):
-    data = {
-        'form': DatosForm()
-    }
-    if request.method == 'POST':
-        formulario = ProductoForm(data = request.POST)
-        if formulario.is_valid(): 
-            formulario.save()
-            messages.success(request, 'Compra realizada con exito.')
-        else:
-            data["form"] = formulario
-
-    return render(request, 'app/pago/pago.html', data)
 
 def agregar_sub(request):
     data = {

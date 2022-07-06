@@ -102,8 +102,8 @@ WSGI_APPLICATION = 'abstracta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/xe',
-        'USER': 'c##administrador',
+        'NAME': '127.0.0.1:1521/orcl1',
+        'USER': 'c#administrador',
         'PASSWORD': 'adm123',
         'TEST': {
             'USER': 'default_test',

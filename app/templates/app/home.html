@@ -7,6 +7,17 @@
         <div class="welcome">
             <h2>Bienvenido, @{{ user.username }}!</h2>
         </div>
+        <div class="welcome__flex">
+            {% if perms.app.add_producto %}
+                <a class="welcome__links" href="{% url 'agregar_producto' %}">Agregar producto</a>
+            {% endif %}
+            {% if perms.app.view_producto %}
+                <a class="welcome__links" href="{% url 'listar_productos' %}">Listado Productos</a>
+            {% endif %}
+            {% if perms.app.view_sub %}
+                <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
+            {% endif %}
+        </div>
         {% else %}
         <div class="welcome">
             <h2>Bienvenido!</h2>

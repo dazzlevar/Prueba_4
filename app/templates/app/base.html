@@ -30,10 +30,10 @@
     <link rel="stylesheet" href="{% static 'css/estilos3.css' %}">
     <link rel="preload" href="{% static 'css/estail.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/estail.css' %}">
-    <link rel="preload" href="{% static 'css/stail3_2.css' %}" as="style">
-    <link rel="stylesheet" href="{% static 'css/stail3_2.css' %}">
-    <link rel="preload" href="{% static 'css/responsive_4_1.css' %}" as="style">
-    <link rel="stylesheet" href="{% static 'css/responsive_4_1.css' %}">
+    <link rel="preload" href="{% static 'css/stail3_3.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/stail3_3.css' %}">
+    <link rel="preload" href="{% static 'css/responsive_4_2.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/responsive_4_2.css' %}">
 
     {% endblock %}
 </head>
@@ -47,30 +47,21 @@
             
         </div>
         <div>
-            <nav class="h5 text-center" id="nav">
+            <nav class="h5 text-center nav__center" id="nav">
                 <ul>
-                    <li><a href="{% url 'home' %}"> Inicio </a></li>
-                    <li><a href="{% url 'clima' %}" data-bs-toggle="modal" data-bs-target="#ModalClima"> Clima </a></li>{% include "app/clima.html" %} 
-                    <li><a href="{% url 'contacto' %}">Contacto</a></li>
-                    <li><a href="{% url 'catalogo' %}">Nuestros Productos!</a></li>
-                    {% if perms.app.add_producto %}
-                    <li><a href="{% url 'agregar_producto' %}">Agregar producto</a></li>
-                    {% endif %}
-                    {% if perms.app.view_producto %}
-                    <li><a href="{% url 'listar_productos' %}">Listado Productos</a></li>
-                    {% endif %}
-                    {% if perms.app.view_sub %}
-                    <li><a href="{% url 'listar_sub' %}">Listado Suscriptores</a></li>
-                    {% endif %}
+                    <li><a class="barra__padding" href="{% url 'home' %}"> Inicio </a></li>
+                    <!-- <li><a class="barra__padding" href="{% url 'clima' %}" data-bs-toggle="modal" data-bs-target="#ModalClima"> Clima </a></li>{% include "app/clima.html" %}  -->
+                    <li><a class="barra__padding" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li><a class="barra__padding" href="{% url 'catalogo' %}">Nuestros Productos!</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'settings' %}">Configuraciones</a></li>
-                    <li><a href="{% url 'logout' %}">Cerrar sesion</a></li>
+                    <li><a class="barra__padding" href="{% url 'settings' %}">Configuraciones</a></li>
+                    <li><a class="barra__padding" href="{% url 'logout' %}">Cerrar sesion</a></li>
                     {% else %}
-                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
-                    <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                    <li><a class="barra__padding" href="{% url 'login' %}">Iniciar Sesión</a></li>
+                    <li><a class="barra__padding" href="{% url 'registro' %}">Registrarse</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'catalogo' %}" data-bs-toggle="modal" data-bs-target="#ModalCarro"><i class="bi bi-cart3 fs-4" style="color: white;"></i></a></li>
+                        <li><a href="{% url 'catalogo' %}" data-bs-toggle="modal" data-bs-target="#ModalCarro"><i class="bi bi-cart3 fs-4 barra__padding" style="color: white;"></i></a></li>
                     {% endif %}
                 </ul>
 

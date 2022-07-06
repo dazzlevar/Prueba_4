@@ -416,6 +416,6 @@
     }
 
     .reloj {
-        transform: translate(-74px, 29px);
+        transform: translate(22rem, 0.5rem);
     }
 }
