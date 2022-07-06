@@ -3,7 +3,7 @@ from django.urls import path, include
 from .views import SuscripcionViewset, home, registro, contacto, agregar_producto, listar_productos, \
     modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, \
     historial, direcciones, cupones, metodos_de_pago, despacho, agregar_sub, \
-    listar_sub, eliminar_sub
+    listar_sub, eliminar_sub, error_404
     # , widget
 from .viewsLogin import login
 from rest_framework import routers
@@ -36,4 +36,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('login', login, name="login"),
     # path('widget/', widget, name="widget"),
+    path('error_404', error_404, name = 'error_404'),
 ]

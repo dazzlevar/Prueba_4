@@ -2,8 +2,3 @@
 - Hacer despacho y seguimiento del mismo
 - Permitir generar descuentos o promociones en la página principal (rol = adm) y hacer que estos descuentos sean validos al pagar
 - Al estar suscrito se otorga un 5% de descuento al momento de pagar
-
-- Idea: dependiendo de la hora los colores de fondo irán cambiando
-
-- ¿"Se deben crear mantenedores para la información relativa a clientes, usuarios, productos, 
-    promociones o descuentos"?

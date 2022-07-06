@@ -119,7 +119,7 @@ def eliminar_producto(request, id):
 def clima(request):
     return render(request, 'app/clima.html')
 
-
+@login_required
 def pagar(request):
     data = {
         'form': DatosForm()
@@ -158,6 +158,7 @@ def metodos_de_pago(request):
 def despacho(request):
     return render(request, 'app/settings/settings_despacho.html')
 
+@login_required
 def agregar_sub(request):
     data = {
         'form': SubForm()
@@ -196,3 +197,5 @@ def eliminar_sub(request, id):
     messages.success(request, "Se ha eliminado con exito!!")
     return redirect(to = "listar_sub")
 
+def error_404(request, exception):
+    return render(request, 'app/404_error/notFound.html')

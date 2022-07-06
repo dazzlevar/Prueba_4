@@ -245,3 +245,8 @@ li {
     color: #00c400;
     background-color: #464343;
 }
+
+/* Error 404 */
+.error_404 {
+    background-color: red;
+}

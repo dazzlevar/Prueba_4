@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Página no encontrada{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stail3_5.css' %}">
+<div class="error_404">
+    <div>
+        <h1>Error 404: <br>Página no encontrada</h1>
+        <a href="{% url 'home' %}">Click aquí para volver al inicio</a>
+    </div>
+</div>
+{% endblock %}
