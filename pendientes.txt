@@ -7,7 +7,3 @@
 
 - ¿"Se deben crear mantenedores para la información relativa a clientes, usuarios, productos, 
     promociones o descuentos"?
-- "El sistema debe considerar acceder a servicios Rest al momento de simular la suscripción con la 
-    fundación, se debe generar un servicio que permita registrar y eliminar las suscripciones (simulación)" COMPLETADO
-- "El sistema debe considerar acceder a el servicio Rest de la fundación al momento de la venta para 
-    validar si el cliente este o no suscrito y aplicar el descuento al total de la venta." 
