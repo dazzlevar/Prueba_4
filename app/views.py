@@ -22,6 +22,8 @@ class Tipo_subViewset(viewsets.ModelViewSet):
 
 def home(request):
     return render(request, 'app/home.html')
+def widget(request):
+    return render(request, 'app/carro/widget.html')
 
 def catalogo(request):
     productos = Producto.objects.all()

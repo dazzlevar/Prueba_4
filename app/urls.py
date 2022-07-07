@@ -5,7 +5,6 @@ from .views import SuscripcionViewset, home, registro, contacto, agregar_product
     historial, direcciones, cupones, metodos_de_pago, agregar_sub, \
     listar_sub, eliminar_sub, error_404, agregar_categoria, listar_categorias, modificar_categoria, eliminar_categoria, \
     listar_usuarios, eliminar_usuario,  agregar_despacho, listar_despacho, historial_usuario, modificar_despacho, eliminar_despacho
-    # , widget
 from .viewsLogin import login
 from rest_framework import routers
 
