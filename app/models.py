@@ -71,3 +71,23 @@ class Suscripcion(models.Model):
 
     def __str__(self):
         return self.rut
+
+class Estado_despacho(models.Model):
+    nombreEstado = models.CharField(max_length=50, verbose_name="Estado del Despacho")
+
+    def __str__(self):
+        return self.nombreEstado
+
+
+
+class Despacho(models.Model):
+    nombreCliente = models.CharField(max_length=50,verbose_name='Nombre del cliente')
+    apellidoCliente = models.CharField(max_length=50, verbose_name='Apellido')
+    correoCliente = models.EmailField(verbose_name='Correo electronico')
+    telefonoCliente = models.IntegerField(verbose_name='Numero telefonico')
+    direccionCliente = models.TextField(verbose_name='Direccion del cliente', null=True)
+    metodo_pago = models.IntegerField(choices=opciones_pago, null=True)
+    estado = models.ForeignKey(Estado_despacho,null=True,blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.nombreCliente

@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+<section>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-8 ">
+                <div class="card bg-dark text-white " style="border-radius: 1rem;">
+                    <div class="card-body ">
+                        <h2 id="" style="color: white;">Historial Despachos</h2>
+                        <hr>
+                    </div>
+                    <table class="table table-dark table-striped table-hover table-responsive-sm fs-4">
+                        <tr style="color: white;">
+                            <th>NOMBRE</th>
+                            <th>PRODUCTO</th>
+                            <th>PRECIO</th>
+                            <th>ESTADO</th>
+                        </tr>
+                        {% for d in entity %}
+                        <tr>
+                            <td>{{d.nombreCliente | title }} {{d.apellidoCliente | title}}</td>
+                            <td>Arbusto machista</td>
+                            <td>$1500</td>
+                            <td>{{d.estado}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <div>
+                        {% include 'app/paginator.html' %}
+                    </div>
+                </div>
+            </div>
+</section>
+<br>
+<br>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<section>
+    <div class="container mb-4 mt-5 ">
+        <div class="row ">
+            <div class="col-12 col-md-6 offset-md-3 mb-md-5 mt-md-4 pb-5 ">
+                <div class="card bg-dark text-white  " style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center fs-4">
+                        <h1 style=" color: white;">Despacho de tus productos!</h1>
+                        <hr style="color: white;">
+                        <div class="card-body ">
+                            <form class="formulario " id="despacho" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form | crispy }}
+
+                                <div class="d-flex justify-content-center">
+                                    <input type="reset" value="Limpiar" class="btn btn-secondary fs-4">
+                                    &nbsp;
+                                    <button type="submit" class="btn btn-primary fs-4">Completar Despacho</button>
+                                </div>
+                            </form>
+                            {{mensaje}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

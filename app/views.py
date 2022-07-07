@@ -1,7 +1,7 @@
 from pprint import pp
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Categoria, Producto, Tipo_sub, Suscripcion
-from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm, CategoriaForm
+from .models import Categoria, Producto, Tipo_sub, Suscripcion, Despacho, Estado_despacho
+from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm, CategoriaForm, DispatchForm, DispatchAdminForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -272,9 +272,9 @@ def cupones(request):
 def metodos_de_pago(request):
     return render(request, 'app/settings/settings_medPagos.html')
 
-@login_required
-def despacho(request):
-    return render(request, 'app/settings/settings_despacho.html')
+# @login_required
+# def despacho(request):
+#     return render(request, 'app/settings/settings_despacho.html')
 
 @login_required
 def agregar_sub(request):
@@ -290,3 +290,80 @@ def agregar_sub(request):
         else:
             data["form"] = formulario
     return render(request, 'app/suscripcion/agregar.html', data)
+
+@login_required
+def agregar_despacho(request):
+    data= {
+        'form' : DispatchForm()
+    }
+    if request.method == 'POST':
+        formulario = DispatchForm(data=request.POST,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "La compra fue un exito!!")
+            return redirect(to = "home")
+        else:
+            data["form"] = formulario
+
+    return render(request, 'app/despacho/agregar.html',data)
+
+@login_required
+@permission_required('app.view_dispatch')
+def listar_despacho(request):
+    despacho = Despacho.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(despacho, 5)
+        despacho = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'entity': despacho,
+        'paginator': paginator
+    }
+    return render(request, 'app/despacho/listar.html',data)
+
+@login_required
+@permission_required('app.change_dispatch')
+def modificar_despacho(request ,  id):
+    despacho = get_object_or_404(Despacho, id = id)
+    data = {
+        'form': DispatchAdminForm(instance=despacho)
+    }
+
+    if request.method == 'POST':
+        formulario = DispatchAdminForm(data=request.POST, instance=despacho, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "El despacho ha sido modificado!")
+            return redirect(to="listar_despacho")
+        data["form"]=formulario
+
+    return render(request, 'app/despacho/modificar.html',data)
+
+@login_required
+@permission_required('app.delete_dispatch')
+def eliminar_despacho(request, id):
+    despacho = get_object_or_404(Despacho, id = id)
+    despacho.delete()
+    messages.success(request, "Se ha eliminado con exito!!")
+    return redirect(to = "listar_despacho")
+
+@login_required
+def historial_usuario(request):
+    despacho = Despacho.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(despacho, 5)
+        despacho = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'entity': despacho,
+        'paginator': paginator
+    }
+    return render(request, 'app/historial.html',data)

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import limpiar_carro, restar_producto, agregar_producto, eliminar_producto, limpiar_carro
+from .views import limpiar_carro, restar_producto, agregar_producto, eliminar_producto
 
 app_name="carro"
 urlpatterns = [

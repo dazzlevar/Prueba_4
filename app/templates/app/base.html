@@ -13,7 +13,8 @@
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'node_modules/jquery/dist/jquery.js' %}"></script>
     <script src="{% static 'js/clock.js' %}"></script>
-
+    <script src="{% static 'js/api.js' %}"></script>
+    
     <!-- MomentJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/es-mx.min.js"></script>
@@ -43,14 +44,15 @@
         <div class="contenedor_logo">
             <img class="logo" src="{% static 'img/logo.png' %}" alt="logo">
             <a href="{% url 'home' %}" style="color:black;"><h2 style="color:white;">Abstracta</h2></a>
-            <p class="reloj" id="reloj"></p>
-            
+            <div class="justify-content-center">
+                <li class="fs-4 reloj" id="reloj"></li>
+                <li class="fs-4 reloj"  id="resultado"></li>
+            </div>
         </div>
         <div>
             <nav class="h5 text-center nav__center" id="nav">
                 <ul>
                     <li><a class="barra__padding" href="{% url 'home' %}"> Inicio </a></li>
-                    <!-- <li><a class="barra__padding" href="{% url 'clima' %}" data-bs-toggle="modal" data-bs-target="#ModalClima"> Clima </a></li>{% include "app/clima.html" %}  -->
                     <li><a class="barra__padding" href="{% url 'contacto' %}">Contacto</a></li>
                     <li><a class="barra__padding" href="{% url 'catalogo' %}">Nuestros Productos</a></li>
                     {% if user.is_authenticated %}

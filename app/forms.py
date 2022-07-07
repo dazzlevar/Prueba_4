@@ -1,7 +1,7 @@
 from dataclasses import field
 from tkinter.ttk import Widget
 from django import forms
-from .models import Contacto, Producto, Datos, Suscripcion, Categoria
+from .models import Contacto, Producto, Datos, Suscripcion, Categoria, Despacho, Estado_despacho
 from .validators import MaxSizeFileValidator
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -59,4 +59,16 @@ class DatosForm(forms.ModelForm):
 class SubForm(forms.ModelForm):
     class Meta:
         model = Suscripcion
+        fields = '__all__'
+
+class DispatchForm(forms.ModelForm):
+
+    class Meta:
+        model = Despacho
+        fields = ["nombreCliente","apellidoCliente","correoCliente","telefonoCliente","direccionCliente","metodo_pago"]
+
+class DispatchAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Despacho
         fields = '__all__'
