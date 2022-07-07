@@ -16,14 +16,13 @@
                                     {% if request.session.carro.items %}
                                         <div class="col-lg-5 col-md-6 mb-4 mb-lg-0 h4" >
                                             <p><strong>{{value.nombre}}</strong></p>
-                                            <hr>
                                             <p><strong>Cantidad: {{value.cantidad}}</strong></p>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 ">
-                                            <div class="d-flex justify-content-center mb-4 " style="max-width: 350px"> 
+                                        <div class="col  ">
+                                            <div class="d-flex justify-content-center mb-4 " style="max-width: 325px 325px"> 
                                                 <a href="{% url 'carro:agregar' value.producto_id %}" class="btn btn-primary px-3 me-2 ">+</a>
-                                                <div class="form-outside">
-                                                    <input min="0" value="{{value.cantidad}}" type="number" class="form-control" />
+                                                <div class="form-outside fs-2">
+                                                    <input  value="{{value.cantidad}}"  class="form-control text-center" />
                                                 </div>
                                                 <a href="{% url 'carro:restar' value.producto_id  %}" class="btn btn-primary px-3 ms-2 ">-</a>
                                             </div>
