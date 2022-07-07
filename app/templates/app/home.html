@@ -3,7 +3,7 @@
 {% block title %}Inicio{% endblock %}
 {% block content %}
 <div style="color:honeydew;">
-    {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
         <div class="welcome">
             <h2>Bienvenido, @{{ user.username }}!</h2>
         </div>
@@ -21,6 +21,10 @@
                     <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
                     <a class="welcome__links" href="#" >Listado de Clientes</a>
                 {% endif %}
+                {% if perms.app.app.view_dispatch %}
+                    <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Despacho</a>
+                    <a class="welcome__links" href="#" >Modificar de Despacho</a>
+                {% endif %}
             </div>
         </div>
         <hr>
@@ -29,6 +33,7 @@
             <h2>Bienvenido!</h2>
         </div>
         <hr>
+        {% endif %}
         <section class="suscribirse">
             <img src="{% static 'img/fondo.jpg' %}" alt="Foto">
             <div class="suscribirse__letras">
@@ -36,11 +41,9 @@
                     obtendrá un descuento del 5% de forma permanente uwu</h2>
             </div>
         
-            <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else
-                %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
+            <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
         </section>
         <hr>
-    {% endif %}
 </div>
 
 {% endblock %}
