@@ -1,4 +1,3 @@
-- Mostrar stock real de los productos disponibles
 - Hacer despacho y seguimiento del mismo
 - Permitir generar descuentos o promociones en la página principal (rol = adm) y hacer que estos descuentos sean validos al pagar
 - Al estar suscrito se otorga un 5% de descuento al momento de pagar

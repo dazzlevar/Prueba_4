@@ -2,8 +2,20 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
-<br>
-<br>
+<div class="barra__lateral">
+    {% if perms.app.add_producto %}
+    <a class="welcome__links barra__margin" href="{% url 'agregar_producto' %}">Agregar producto</a>
+    <a class="welcome__links barra__margin" href="{% url 'agregar_categoria' %}">Agregar categoria</a>
+    {% endif %}
+    {% if perms.app.view_producto %}
+    <a class="welcome__links barra__margin" href="{% url 'listar_productos' %}">Listado Productos</a>
+    <a class="welcome__links barra__margin" href="{% url 'listar_categorias' %}">Listado Categorias</a>
+    {% endif %}
+    {% if perms.app.view_sub %}
+    <a class="welcome__links barra__margin" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
+    <a class="welcome__links barra__margin" href="{% url 'listar_usuarios' %}" >Listado de Clientes</a>
+    {% endif %}
+</div>
 <div class="container mb-4">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3 mb-md-5 mt-md-4 pb-5">

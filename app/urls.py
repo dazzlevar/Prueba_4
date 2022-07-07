@@ -3,7 +3,8 @@ from django.urls import path, include
 from .views import SuscripcionViewset, home, registro, contacto, agregar_producto, listar_productos, \
     modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, \
     historial, direcciones, cupones, metodos_de_pago, despacho, agregar_sub, \
-    listar_sub, eliminar_sub, error_404
+    listar_sub, eliminar_sub, error_404, agregar_categoria, listar_categorias, modificar_categoria, eliminar_categoria, \
+    listar_usuarios, eliminar_usuario
     # , widget
 from .viewsLogin import login
 from rest_framework import routers
@@ -22,6 +23,14 @@ urlpatterns = [
     path('listar-productos/', listar_productos, name = 'listar_productos'),
     path('modificar-producto/<id>/', modificar_producto, name = "modificar_producto"),
     path('eliminar-producto/<id>/', eliminar_producto, name = "eliminar_producto"),
+    path('agregar-categoria/', agregar_categoria, name = "agregar_categoria"),
+    path('listar-categorias/', listar_categorias, name = 'listar_categorias'),
+    path('modificar-categoria/<id>/', modificar_categoria, name = "modificar_categoria"),
+    path('eliminar-categoria/<id>/', eliminar_categoria, name = "eliminar_categoria"),
+
+    path('listar-usuarios', listar_usuarios, name = 'listar_usuarios'),
+    path('eliminar-usuario/<id>/', eliminar_usuario, name = "eliminar_usuario"),
+    
     path('clima/', clima, name = "clima"),
     path('settings/', settings, name = 'settings'),
     path('settings/historial/', historial, name = 'historial'),

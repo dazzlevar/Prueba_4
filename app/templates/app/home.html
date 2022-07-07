@@ -8,32 +8,39 @@
             <h2>Bienvenido, @{{ user.username }}!</h2>
         </div>
         <div class="welcome__flex">
-            {% if perms.app.add_producto %}
-                <a class="welcome__links" href="{% url 'agregar_producto' %}">Agregar producto</a>
-            {% endif %}
-            {% if perms.app.view_producto %}
-                <a class="welcome__links" href="{% url 'listar_productos' %}">Listado Productos</a>
-            {% endif %}
-            {% if perms.app.view_sub %}
-                <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
-            {% endif %}
+            <div class="welcome__grid">
+                {% if perms.app.add_producto %}
+                    <a class="welcome__links" href="{% url 'agregar_producto' %}">Agregar producto</a>
+                    <a class="welcome__links" href="{% url 'agregar_categoria' %}">Agregar categoria</a>
+                {% endif %}
+                {% if perms.app.view_producto %}
+                    <a class="welcome__links" href="{% url 'listar_productos' %}">Listado Productos</a>
+                    <a class="welcome__links" href="{% url 'listar_categorias' %}">Listado Categorias</a>
+                {% endif %}
+                {% if perms.app.view_sub %}
+                    <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
+                    <a class="welcome__links" href="#" >Listado de Clientes</a>
+                {% endif %}
+            </div>
         </div>
+        <hr>
         {% else %}
         <div class="welcome">
             <h2>Bienvenido!</h2>
         </div>
+        <hr>
+        <section class="suscribirse">
+            <img src="{% static 'img/fondo.jpg' %}" alt="Foto">
+            <div class="suscribirse__letras">
+                <h2 class="suscribirse__mensaje">Suscribirse a "Oni-chan", una fundación sin fines de lucro. Al suscribirse
+                    obtendrá un descuento del 5% de forma permanente uwu</h2>
+            </div>
+        
+            <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else
+                %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
+        </section>
+        <hr>
     {% endif %}
 </div>
-    <hr>
-    <section class="suscribirse">
-        <img src="{% static 'img/fondo.jpg' %}" alt="Foto">
-        <div class="suscribirse__letras">
-            <h2 class="suscribirse__mensaje">Suscribirse a "Oni-chan", una fundación sin fines de lucro. Al suscribirse
-                obtendrá un descuento del 5% de forma permanente uwu</h2>
-        </div>
 
-        <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else
-            %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
-    </section>
-    <hr>
 {% endblock %}

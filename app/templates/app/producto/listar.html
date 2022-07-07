@@ -23,9 +23,20 @@
 {% endblock %}
 {% block content %}
 {% load humanize %}
-<br>
-<br>
-<br>
+<div class="barra__lateral">
+    {% if perms.app.add_producto %}
+    <a class="welcome__links barra__margin" href="{% url 'agregar_producto' %}">Agregar producto</a>
+    <a class="welcome__links barra__margin" href="{% url 'agregar_categoria' %}">Agregar categoria</a>
+    {% endif %}
+    {% if perms.app.view_producto %}
+    <a class="welcome__links barra__margin" href="{% url 'listar_productos' %}">Listado Productos</a>
+    <a class="welcome__links barra__margin" href="{% url 'listar_categorias' %}">Listado Categorias</a>
+    {% endif %}
+    {% if perms.app.view_sub %}
+    <a class="welcome__links barra__margin" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
+    <a class="welcome__links barra__margin" href="{% url 'listar_usuarios' %}" >Listado de Clientes</a>
+    {% endif %}
+</div>
 <div class="container">
     <div class="card bg-dark text-white">
         <div class="card-body ">

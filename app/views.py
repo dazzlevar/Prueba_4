@@ -1,7 +1,8 @@
 from pprint import pp
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto, Tipo_sub, Suscripcion
-from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm
+from .models import Categoria, Producto, Tipo_sub, Suscripcion
+from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm, CategoriaForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -59,6 +60,7 @@ def registro(request):
         data["form"] = formulario
     return render(request, 'registration/registro.html', data)
 
+@login_required
 @permission_required('app.add_producto')
 def agregar_producto(request):
     data = {
@@ -74,6 +76,7 @@ def agregar_producto(request):
 
     return render(request, 'app/producto/agregar.html', data)
 
+@login_required
 @permission_required('app.view_producto')
 def listar_productos(request):
     productos = Producto.objects.all()
@@ -91,6 +94,7 @@ def listar_productos(request):
     }
     return render(request, 'app/producto/listar.html', data)
 
+@login_required
 @permission_required('app.change_producto')
 def modificar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)
@@ -108,6 +112,7 @@ def modificar_producto(request, id):
         data['form'] = formulario
     return render(request, 'app/producto/modificar.html', data)
 
+@login_required
 @permission_required('app.delete_producto')
 def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, id = id)
@@ -115,6 +120,119 @@ def eliminar_producto(request, id):
     messages.success(request, 'Eliminado correctamente')
     return redirect(to = "listar_productos") 
 
+@login_required
+@permission_required('app.add_categoria')
+def agregar_categoria(request):
+    data = {
+        'form': CategoriaForm()
+    }
+    if request.method == 'POST':
+        formulario = CategoriaForm(data = request.POST, files=request.FILES)
+        if formulario.is_valid(): 
+            formulario.save()
+            messages.success(request, 'categoria registrada')
+        else:
+            data["form"] = formulario
+    return render(request, 'app/categoria/agregar.html', data)
+
+@login_required
+@permission_required('app.view_categoria')
+def listar_categorias(request):
+    categorias = Categoria.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(categorias, 5)
+        categorias = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'entity': categorias,
+        'paginator': paginator
+    }
+    return render(request, 'app/categoria/listar.html', data)
+
+@login_required
+@permission_required('app.change_categoria')
+def modificar_categoria(request, id):
+    categoria = get_object_or_404(Categoria, id=id)
+
+    data = {
+        'form': CategoriaForm(instance = categoria)
+    }
+
+    if request.method == 'POST':
+        formulario = CategoriaForm(data = request.POST, instance = categoria, files = request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Modificado correctamente')
+            return redirect(to = 'listar_categoria')
+        data['form'] = formulario
+    return render(request, 'app/categoria/modificar.html', data)
+
+@login_required
+@permission_required('app.delete_categoria')
+def eliminar_categoria(request, id):
+    categoria = get_object_or_404(Categoria, id = id)
+    categoria.delete()
+    messages.success(request, 'Eliminado correctamente')
+    return redirect(to = "listar_categoria")
+
+@login_required
+@permission_required('app.view_usuario')
+def listar_usuarios(request):
+    usuarios = User.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(usuarios, 5)
+        usuarios = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'entity': usuarios,
+        'paginator': paginator
+    }
+    return render(request, 'app/usuarios/listar.html', data)
+
+@login_required
+@permission_required('app.delete_usuario')
+def eliminar_usuario(request, id):
+    usuario = get_object_or_404(User, id = id)
+    usuario.delete()
+    messages.success(request, "Se ha eliminado con exito!!")
+    return redirect(to = "listar_usuarios")
+
+@login_required
+@permission_required('app.view_sub')
+def listar_sub(request):
+    suscripciones = Suscripcion.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(suscripciones, 7)
+        suscripciones = paginator.page(page)
+    except:
+        raise Http404
+
+    data = {
+        'sub': suscripciones,
+        'paginator' : paginator
+    }
+    return render(request, 'app/suscripcion/listar.html', data)
+
+@login_required
+@permission_required('app.delete_sub')
+def eliminar_sub(request, id):
+    suscripcion = get_object_or_404(Suscripcion, id = id)
+    suscripcion.delete()
+    messages.success(request, "Se ha eliminado con exito!!")
+    return redirect(to = "listar_sub")
+
+def error_404(request, exception):
+    return render(request, 'app/404_error/notFound.html')    
 
 def clima(request):
     return render(request, 'app/clima.html')
@@ -172,30 +290,3 @@ def agregar_sub(request):
         else:
             data["form"] = formulario
     return render(request, 'app/suscripcion/agregar.html', data)
-
-@permission_required('app.view_sub')
-def listar_sub(request):
-    suscripciones = Suscripcion.objects.all()
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(suscripciones, 7)
-        suscripciones = paginator.page(page)
-    except:
-        raise Http404
-
-    data = {
-        'sub': suscripciones,
-        'paginator' : paginator
-    }
-    return render(request, 'app/suscripcion/listar.html', data)
-
-@permission_required('app.delete_sub')
-def eliminar_sub(request, id):
-    suscripcion = get_object_or_404(Suscripcion, id = id)
-    suscripcion.delete()
-    messages.success(request, "Se ha eliminado con exito!!")
-    return redirect(to = "listar_sub")
-
-def error_404(request, exception):
-    return render(request, 'app/404_error/notFound.html')
