@@ -272,10 +272,6 @@ def cupones(request):
 def metodos_de_pago(request):
     return render(request, 'app/settings/settings_medPagos.html')
 
-# @login_required
-# def despacho(request):
-#     return render(request, 'app/settings/settings_despacho.html')
-
 @login_required
 def agregar_sub(request):
     data = {
