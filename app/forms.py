@@ -54,7 +54,7 @@ class CustomUserCreationForm(UserCreationForm):
 class DatosForm(forms.ModelForm):
     class Meta: 
         model = Datos
-        fields = ['nombre', 'telefono', 'correo', 'metodo_pago', 'cupon']
+        fields = ['nombre', 'telefono', 'correo', 'metodo_pago']
 
 class SubForm(forms.ModelForm):
     class Meta:

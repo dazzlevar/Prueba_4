@@ -23,7 +23,7 @@ class Carro:
                     value["cantidad"] = value["cantidad"]+1
                     value["precio"] = float(value["precio"])+producto.precioProducto
                     break
-        self.guardar_carro()
+        self. guardar_carro()
 
     def guardar_carro(self):
         self.session["carro"] = self.carro

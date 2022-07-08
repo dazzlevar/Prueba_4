@@ -3,16 +3,18 @@
 {% block title %}Catalogo{% endblock title %}
 {% block content %}
 {% load humanize %}
+{% load mathfilters %}
 <br>
 <br>
 <br>
 <h2 class="h1" style="color: honeydew;">Productos de nuestra tienda!</h2>
+<div class=" container d-flex justify-content-center">
+    <a class="btn-success welcome__links" href="{% url 'historial_usuario' %}">Historial de compra</a>
+</div>
 <div class="container  mt-5">
     <div style="float: center;">
         {% if request.user.is_authenticated %}
             {% include "app/carro/widget.html" %}
-        {% else %}
-            <div class="container alert alert-danger text-center fs-4 p-2 w-25 "> Para ver el Carro inicia sesion!!</div>
         {% endif %}
     </div>
     <div class="productos">

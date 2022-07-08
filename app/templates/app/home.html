@@ -21,10 +21,10 @@
                     <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
                     <a class="welcome__links" href="#" >Listado de Clientes</a>
                 {% endif %}
-                {% if perms.app.app.view_dispatch %}
-                    <a class="welcome__links" href="{% url 'listar_sub' %}">Listado Despacho</a>
-                    <a class="welcome__links" href="#" >Modificar de Despacho</a>
+                {% if perms.app.view_dispatch %}
+                    <a class="welcome__links" href="{% url 'listar_despacho' %}">Listado y modificacion de Despacho</a>
                 {% endif %}
+                
             </div>
         </div>
         <hr>
@@ -40,8 +40,11 @@
                 <h2 class="suscribirse__mensaje">Suscribirse a "Oni-chan", una fundación sin fines de lucro. Al suscribirse
                     obtendrá un descuento del 5% de forma permanente uwu</h2>
             </div>
-        
+            {% if user.is_authenticated %}
+            <a class="btn btn-success suscribirse__boton">Gracias por suscribirse!</a>
+            {% else %}
             <a class="btn btn-success suscribirse__boton" {% if user.is_authenticated %} href="{% url 'agregar_sub' %}" {% else %} href="{% url 'login' %}" {% endif %}>Suscribirse</a>
+            {% endif %}
         </section>
         <hr>
 </div>

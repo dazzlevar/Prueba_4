@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'carro',
+    'mathfilters',
 ]
 
 INSTALLED_APPS += ['import_export']
@@ -89,7 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'carro.context_processor.importe_total_carro'
+                'carro.context_processor.importe_total_carro',
+                'carro.context_processor.total_carro_descuento'
             ],
         },
     },
