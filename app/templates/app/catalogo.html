@@ -33,7 +33,7 @@
                     <h5>Categoria: {{ p.nombreCat | capfirst }}</h5>
                 </div>
                 <div class="card-footer text-center">
-                    <a {% if user.is_authenticated %} href="{% url 'carro:agregar' p.id %}"  {% else %} href="{% url 'login' %}" {% endif %} class="btn btn-success ">Agregar a carrito</a>
+                    <a {% if user.is_authenticated %} href="{% url 'carro:agregar' p.id %}"  {% else %} href="{% url 'login' %}" {% endif %} class="btn btn-outline-light btn-lg px-5">Agregar a carrito</a>
                 </div>
 
             </div>

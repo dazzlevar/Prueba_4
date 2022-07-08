@@ -34,38 +34,44 @@
     {% endif %}
     {% if perms.app.view_sub %}
     <a class="welcome__links barra__margin barra__linkSpace" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
-    <a class="welcome__links barra__margin barra__linkSpace" href="{% url 'listar_usuarios' %}" >Listado de Clientes</a>
+    <a class="welcome__links barra__margin barra__linkSpace" href="{% url 'listar_usuarios' %}">Listado de Clientes</a>
     {% endif %}
 </div>
-<div class="container">
-    <div class="card bg-dark text-white">
-        <div class="card-body ">
-            <h2>Listado de categorias</h2>
-            <hr>
-        </div>
-        <table class="table table-dark table-striped table-hover table-responsive-sm fs-4">
-            <tr>
-                <th>Nombre</th>
-                <th>Opciones</th>
-            </tr>
-            {% for p in entity %}
-            <tr>
-                <td>{{ p.nombreCat | title }}</td>
-                <td>
-                    <a class="btn btn-info btn-sm" href="{% url 'modificar_categoria' p.id %}">Modificar</a>
-                    <a class="btn btn-danger btn-sm" href="#" onclick="eliminarCategoria({{ p.id }})">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <hr>
-        <div>
-            {% include 'app/paginator.html' %}
+<div class="container h-100">
+    <div class="row d-flex justify-content-center  h-100">
+        <div class="col-12 col-md-8 ">
+            <div class="card bg-dark text-white " style="border-radius: 1rem;">
+                <div class="card-body ">
+                    <h2>Listado de categorias</h2>
+                    <hr>
+                </div>
+                <table class="table table-dark table-striped table-hover table-responsive-sm fs-4">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Opciones</th>
+                    </tr>
+                    {% for p in entity %}
+                    <tr>
+                        <td>{{ p.nombreCat | title }}</td>
+                        <td>
+                            <a class="btn btn-outline-light btn-lg px-4" href="{% url 'modificar_categoria' p.id %}">Modificar</a>
+                            <a class="btn btn-outline-light btn-lg px-4" href="#"
+                                onclick="eliminarCategoria({{ p.id }})">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <hr>
+                <div>
+                    {% include 'app/paginator.html' %}
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
+</div>
+<br>
+<br>
+<br>
 </div>
 <script>
     let menu = document.getElementById("menu")

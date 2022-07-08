@@ -27,9 +27,9 @@
                         {% csrf_token %}
                         {{ form | crispy }}
                         <div class="d-flex justify-content-end">
-                            <input class="btn btn-secundary" type="reset" value="Cancelar" style="background-color: rgb(255, 230, 0)">
+                            <input class="btn btn-outline-light btn-lg px-5" type="reset" value="Cancelar">
                             &nbsp;
-                            <input class="btn btn-primary" type="submit" value="Guardar">
+                            <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Guardar">
                         </div>
                     </form>
                     {{ mensaje }}

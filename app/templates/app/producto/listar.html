@@ -34,50 +34,56 @@
     {% endif %}
     {% if perms.app.view_sub %}
     <a class="welcome__links barra__margin" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
-    <a class="welcome__links barra__margin" href="{% url 'listar_usuarios' %}" >Listado de Clientes</a>
+    <a class="welcome__links barra__margin" href="{% url 'listar_usuarios' %}">Listado de Clientes</a>
     {% endif %}
 </div>
-<div class="container">
-    <div class="card bg-dark text-white">
-        <div class="card-body ">
-            <h2>Listado de productos</h2>
-            <hr>
-        </div>
-        <table class="table table-dark table-striped table-hover table-responsive-sm fs-4">
-            <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Categoria</th>
-                <th>Cantidad</th>
-                <th>Opciones</th>
-            </tr>
-            {% for p in entity %}
-            <tr>
-                <td>{{ p.nombreProducto | title }}</td>
-                <td>{{ p.descripcionProducto | title }}</td>
-                <td>{{ p.precioProducto | intcomma }}</td>
-                <td>{{ p.nombreCat | title }}</td>
-                <td>{{ p.cantidadProducto | title }}</td>
-                <td>
-                    {% if perms.app.change_producto %}
-                    <a class="btn btn-info btn-sm" href="{% url 'modificar_producto' p.id %}">Modificar</a>
-                    {% endif %}
-                    {% if perms.app.delete_producto %}
-                    <a class="btn btn-danger btn-sm" href="#" onclick="eliminarProducto({{ p.id }})">Eliminar</a>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <hr>
-        <div>
-            {% include 'app/paginator.html' %}
+<div class="container h-100">
+    <div class="row d-flex justify-content-center  h-100">
+        <div class="col-12 col-md-8 ">
+            <div class="card bg-dark text-white " style="border-radius: 1rem;">
+                <div class="card-body ">
+                    <h2>Listado de productos</h2>
+                    <hr>
+                </div>
+                <table class="table table-dark table-striped table-hover table-responsive-sm fs-5">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Categoria</th>
+                        <th>Cantidad</th>
+                        <th>Opciones</th>
+                    </tr>
+                    {% for p in entity %}
+                    <tr>
+                        <td>{{ p.nombreProducto | title }}</td>
+                        <td>{{ p.descripcionProducto | title }}</td>
+                        <td>{{ p.precioProducto | intcomma }}</td>
+                        <td>{{ p.nombreCat | title }}</td>
+                        <td>{{ p.cantidadProducto | title }}</td>
+                        <td>
+                            {% if perms.app.change_producto %}
+                            <a class="btn btn-outline-light " href="{% url 'modificar_producto' p.id %}">Modificar</a>
+                            {% endif %}
+                            {% if perms.app.delete_producto %}
+                            <a class="btn btn-outline-light " href="#"
+                                onclick="eliminarProducto({{ p.id }})">Eliminar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <hr>
+                <div>
+                    {% include 'app/paginator.html' %}
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
+</div>
+<br>
+<br>
+<br>
 </div>
 <script>
     let menu = document.getElementById("menu")

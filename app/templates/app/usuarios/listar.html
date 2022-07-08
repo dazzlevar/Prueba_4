@@ -34,43 +34,49 @@
     {% endif %}
     {% if perms.app.view_sub %}
     <a class="welcome__links barra__margin barra__linkSpace" href="{% url 'listar_sub' %}">Listado Suscriptores</a>
-    <a class="welcome__links barra__margin barra__linkSpace" href="{% url 'listar_usuarios' %}" >Listado de Clientes</a>
+    <a class="welcome__links barra__margin barra__linkSpace" href="{% url 'listar_usuarios' %}">Listado de Clientes</a>
     {% endif %}
 </div>
-<div class="container">
-    <div class="card bg-dark text-white">
-        <div class="card-body ">
-            <h2>Listado de usuarios registrados</h2>
-            <hr>
-        </div>
-        <table class="table table-dark table-striped table-hover table-responsive-sm fs-4">
-            <tr>
-                <th>Nombre de usuario</th>
-                <th>Primer nombre</th>
-                <th>Apellidos</th>
-                <th>Correo</th>
-                <th>Opcion</th>
-            </tr>
-            {% for p in entity %}
-            <tr>
-                <td>{{ p.username | title }}</td>
-                <td>{{ p.first_name | title }}</td>
-                <td>{{ p.last_name | title }}</td>
-                <td>{{ p.email | title }}</td>
-                <td>
-                    <a class="btn btn-danger btn-sm" href="#" onclick="eliminarUsuario({{ p.id }})">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <hr>
-        <div>
-            {% include 'app/paginator.html' %}
+<div class="container h-100">
+    <div class="row d-flex justify-content-center  h-100">
+        <div class="col-12 col-md-8 ">
+            <div class="card bg-dark text-white " style="border-radius: 1rem;">
+                <div class="card-body ">
+                    <h2>Listado de usuarios registrados</h2>
+                    <hr>
+                </div>
+                <table class="table table-dark table-striped table-hover table-responsive-sm fs-4">
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th id="th_firstName">Primer nombre</th>
+                        <th id="th_lastName">Apellidos</th>
+                        <th>Correo</th>
+                        <th>Opcion</th>
+                    </tr>
+                    {% for p in entity %}
+                    <tr>
+                        <td>{{ p.username | title }}</td>
+                        <td id="td_firstName">{{ p.first_name | title }}</td>
+                        <td id="td_lastName">{{ p.last_name | title }}</td>
+                        <td>{{ p.email | title }}</td>
+                        <td>
+                            <a class="btn btn-outline-light btn-lg px-5" href="#"
+                                onclick="eliminarUsuario({{ p.id }})">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <hr>
+                <div>
+                    {% include 'app/paginator.html' %}
+                </div>
+            </div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
+</div>
+<br>
+<br>
+<br>
 </div>
 <script>
     let menu = document.getElementById("menu")

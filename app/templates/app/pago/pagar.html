@@ -75,7 +75,7 @@
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label fw-bold fs-4">Precio final:</label>
                                         <span class="form-label fw-bold fs-4">$</span>
-                                        <span class="form-label fw-bold fs-4" id="pago">0</span>
+                                        <span class="form-label fw-bold fs-4" id="pago">{{importe_total_carro|sub:total_carro_descuento| intcomma}}</span>
                                     </div>
                                     <div class="form-outline form-white mb-4">
                                         <label for="InputAddress" class="form-label fw-bold fs-4">Metodo de pago:
@@ -89,15 +89,12 @@
                                     </div>
                                     <label class="form-label fw-bold fs-4"> Comentarios:</label>
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here"
-                                            id="floatingTextarea2" style="height: 100px; resize: none;"></textarea>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; resize: none;"></textarea>
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="reset" class="btn btn-outline-light btn-lg px-5 tamanno"
-                                        id="btnCancelar" value="Cancelar">
-                                    <input type="submit" class="btn btn-outline-light btn-lg px-5 tamanno" id="btnPagar"
-                                        value="Pagar">
+                                    <input type="reset" class="btn btn-outline-light btn-lg px-5 tamanno" id="btnCancelar" value="Cancelar" style="padding-right: 0.1rem!important; padding-left: 0.2rem!important; padding-top: 0.3rem!important">
+                                    <a class="btn btn-outline-light btn-lg px-5 tamanno" href="{% url 'agregar_despacho' %}" style="padding-left: 2.9rem!important; padding-top: 0.81rem!important">Pagar</a>
                                 </div>
                             </form>
                         </div>

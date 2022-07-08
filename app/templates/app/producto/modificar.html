@@ -12,9 +12,9 @@
                         {% csrf_token %}
                         {{ form | crispy }}
                         <div class="d-flex justify-content-end">
-                            <input class="btn btn-danger" type="reset" value="Cancelar">
+                            <input class="btn btn-outline-light btn-lg px-5" type="reset" value="Cancelar">
                             &nbsp;
-                            <input class="btn btn-primary" type="submit" value="Editar">
+                            <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Editar">
                         </div>
                     </form>
                     {{ mensaje }}

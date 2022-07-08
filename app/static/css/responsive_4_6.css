@@ -5,7 +5,7 @@
 /*Smartphone*/
 @media (min-width: 360px) and (max-width: 480px) {
     .welcome {
-        margin-bottom: 6.5rem;
+        margin-bottom: 2.5rem;
     }
 
     .welcome h2 {
@@ -19,6 +19,9 @@
 
     .suscribirse__mensaje {
         width: 44rem;
+        padding-top: 10rem;
+        top: 44%!important;
+        height: 43rem;
     }
     
     .galeria {
@@ -35,7 +38,7 @@
         top: 73%;
         left: 29%;
         width: 17rem;
-        height: 3.4rem;
+        height: 7.4rem!important;
         transform: none;
     }
 
@@ -229,6 +232,40 @@
     .reloj {
         transform: translate(96px, 10px);
     }
+
+    .barra__lateral {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        margin-right: 0px !important;
+        margin-left: 1rem;
+    }
+
+    .welcome__links {
+        height: 38px;
+        padding-top: 8px;
+    }
+
+    .barra__margin {
+        margin: 0 1.7rem 0 0!important;
+    }
+
+    #botones_producto {
+        justify-content: center!important;
+    }
+
+    #td_firstName, #td_lastName, #th_firstName, #th_lastName {
+        display: none;
+    }
+
+    .welcome__flex {
+        margin: 0 auto;
+    }
+
+    .welcome__grid {
+        display: grid;
+        grid-template-columns: unset;
+    }
 }
 
 
@@ -417,5 +454,26 @@
 
     .reloj {
         transform: translate(22rem, 0.5rem);
+    }
+
+    .barra__lateral {
+        display: flex;
+        justify-content: center;
+    }
+
+    .welcome__links {
+        padding: 1rem 1.9rem;
+    }
+
+    .barra__margin {
+        margin: 0 1.7rem 0 0!important;
+    }
+
+    .suscribirse__boton {
+        left: 61%;
+    }
+
+    .welcome__flex {
+        margin: 0 auto;
     }
 }

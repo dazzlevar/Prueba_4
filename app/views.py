@@ -271,18 +271,6 @@ def settings(request):
     return render(request, 'app/settings/settings_personales.html', data)
 
 @login_required
-def historial(request):
-    return render(request, 'app/settings/settings_historial.html')
-
-@login_required
-def direcciones(request):
-    return render(request, 'app/settings/settings_direcciones.html')
-
-@login_required
-def metodos_de_pago(request):
-    return render(request, 'app/settings/settings_medPagos.html')
-
-@login_required
 def agregar_sub(request):
     data = {
         'form': SubForm()

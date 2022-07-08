@@ -1,12 +1,7 @@
 from django.db import router
 from django.urls import path, include
 from .views import SuscripcionViewset, home, registro, contacto, agregar_producto, listar_productos, \
-    modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, \
-<<<<<<< HEAD
-    historial, direcciones, metodos_de_pago, agregar_sub, \
-=======
-    historial, metodos_de_pago, agregar_sub, \
->>>>>>> f26ae99b3d40ef96fd386ad09554954a0b1f5845
+    modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, agregar_sub, \
     listar_sub, eliminar_sub, error_404, agregar_categoria, listar_categorias, modificar_categoria, eliminar_categoria, \
     listar_usuarios, eliminar_usuario,  agregar_despacho, listar_despacho, historial_usuario, modificar_despacho, eliminar_despacho
 from .viewsLogin import login
@@ -14,8 +9,6 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('suscripcion', SuscripcionViewset)
-
-
 
 urlpatterns = [
     path('', home, name = "home"),
@@ -44,14 +37,6 @@ urlpatterns = [
 
     # SETTINGS
     path('settings/', settings, name = 'settings'),
-    path('settings/historial/', historial, name = 'historial'),
-<<<<<<< HEAD
-    path('settings/direcciones/', direcciones, name = 'direcciones'),
-    path('settings/metodos-de-pago/', metodos_de_pago, name = 'metodos_de_pago'),
-    # path('settings/despacho/', despacho, name = 'despacho'),
-=======
-    path('settings/metodos_de_pago/', metodos_de_pago, name = 'metodos_de_pago'),
->>>>>>> f26ae99b3d40ef96fd386ad09554954a0b1f5845
     path('pagar', pagar, name = 'pagar'),
 
     # SUSCRIPCION

@@ -60,7 +60,7 @@
                         <td>{{ sub.tipo | title}}</td>
                         {% if perms.app.delete_producto %}
                         <td>
-                            <a class="btn btn-danger btn-sm" href="#" onclick="eliminar_sub({{ sub.id }})">Eliminar</a>
+                            <a class="btn btn-outline-light btn-lg px-5" href="#" onclick="eliminar_sub({{ sub.id }})">Eliminar</a>
                         </td>
                         {% endif %}
                     </tr>
