@@ -1,7 +1,7 @@
 from pprint import pp
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Categoria, Producto, Tipo_sub, Suscripcion, Despacho, Estado_despacho
-from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm, CategoriaForm, DispatchForm, DispatchAdminForm
+from .models import Categoria, Producto, Tipo_sub, Suscripcion, Despacho, Estado_despacho, MetodoPago
+from .forms import CustomUserCreationForm, ContactoForm, ProductoForm, DatosForm, SubForm, CategoriaForm, DispatchForm, DispatchAdminForm, MetodoPagoForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -73,6 +73,7 @@ def agregar_producto(request):
         if formulario.is_valid(): 
             formulario.save()
             messages.success(request, 'producto registrado')
+            return redirect(to = 'listar_productos')
         else:
             data["form"] = formulario
 
@@ -133,6 +134,7 @@ def agregar_categoria(request):
         if formulario.is_valid(): 
             formulario.save()
             messages.success(request, 'categoria registrada')
+            return redirect(to = 'listar_categorias')
         else:
             data["form"] = formulario
     return render(request, 'app/categoria/agregar.html', data)
@@ -169,7 +171,7 @@ def modificar_categoria(request, id):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, 'Modificado correctamente')
-            return redirect(to = 'listar_categoria')
+            return redirect(to = 'listar_categorias')
         data['form'] = formulario
     return render(request, 'app/categoria/modificar.html', data)
 
@@ -179,7 +181,7 @@ def eliminar_categoria(request, id):
     categoria = get_object_or_404(Categoria, id = id)
     categoria.delete()
     messages.success(request, 'Eliminado correctamente')
-    return redirect(to = "listar_categoria")
+    return redirect(to = "listar_categorias")
 
 @login_required
 @permission_required('app.view_usuario')
@@ -256,7 +258,17 @@ def pagar(request):
 
 @login_required
 def settings(request):
-    return render(request, 'app/settings/settings_personales.html')
+    data = {
+        'form': MetodoPagoForm()
+    }
+    if request.method == 'POST':
+        formulario = ProductoForm(data = request.POST)
+        if formulario.is_valid(): 
+            formulario.save()
+            messages.success(request, 'Metodo de pago con exito.')
+        else:
+            data["form"] = formulario
+    return render(request, 'app/settings/settings_personales.html', data)
 
 @login_required
 def historial(request):
@@ -265,10 +277,6 @@ def historial(request):
 @login_required
 def direcciones(request):
     return render(request, 'app/settings/settings_direcciones.html')
-
-@login_required
-def cupones(request):
-    return render(request, 'app/settings/settings_cupones.html')
 
 @login_required
 def metodos_de_pago(request):

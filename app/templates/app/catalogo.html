@@ -18,19 +18,17 @@
     <div class="productos">
         {% for p in productos %}
         <div class="producto d-flex justify-content-center">
-            <div class="card contenedor_producto border border-2 border-dark"
-                style=" background-color: rgb(115, 183, 225);">
+            <div class="card contenedor_producto border border-2 border-dark" style="background-color: #333333; border-radius: 20px; padding: 7px;">
                 {% if p.imagen %}
-                <img class="card-img-top" src="{{ p.imagen.url }}" style="width:100%; padding:2%;"
+                <img class="card-img-top" src="{{ p.imagen.url }}" style="width:100%; padding:2%; border-radius: 12px; border: solid white 0.5px;"
                     alt="imagen producto">
                 {% endif %}
-                <!-- saque la clase ' detalle ' -->
-                <div class="card-body rounded" style="background-color: rgb(68, 174, 240);">
-                    <h5>Categoria: {{ p.nombreCat | capfirst }}</h5>
-                    <h5>Cantidad: {{ p.cantidadProducto | capfirst }}</h5>
+                <div class="card-body rounded" style="background-color: transparent; color: white; text-align: center;">
                     <h2>{{ p.nombreProducto | title }}</h2>
-                    <h5>Descripcion: {{ p.descripcionProducto | capfirst }}</h5>
                     <h3>Precio: ${{ p.precioProducto | intcomma }}</h3>
+                    <h5>Cantidad: {{ p.cantidadProducto | capfirst }}</h5>
+                    <h5>Descripcion: {{ p.descripcionProducto | capfirst }}</h5>
+                    <h5>Categoria: {{ p.nombreCat | capfirst }}</h5>
                 </div>
                 <div class="card-footer text-center">
                     <a {% if user.is_authenticated %} href="{% url 'carro:agregar' p.id %}"  {% else %} href="{% url 'login' %}" {% endif %} class="btn btn-success ">Agregar a carrito</a>

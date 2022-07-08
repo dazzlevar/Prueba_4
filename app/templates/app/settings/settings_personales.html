@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %}Configuraciones{% endblock title %}
 {% block contenido %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+<script src="{% static 'js/app5.js' %}"></script>
 <div class="configuracion__menuCtr">
     <div class="configuracion__datosPersonales">
         <h2>Datos personales</h2>
@@ -32,24 +35,9 @@
     <div class="configuracion__datosBancarios">
         <h2>Ingresa una cuenta asociada a tu correo para futuras devoluciones de dinero</h2>
         <form>
-            <div class="form-group edit space">
-                <div class="form-outline form-white mb-4">
-                    <label class="form-label fw-bold fs-4">Banco</label>
-                    <select class="form-select fs-5">
-                        <option active>Seleccionar banco</select>
-                    </select>
-                </div>
-                <div class="form-outline form-white mb-4">
-                    <label class="form-label fw-bold fs-4">Tipo de cuenta</label>
-                    <select class="form-select fs-5">
-                        <option active>Seleccionar tipo de cuenta</select>
-                    </select>
-                </div>
-                <div class="form-outline form-white mb-4">
-                    <label class="form-label fw-bold fs-4">Número de cuenta</label>
-                    <input class="form-control form-control-lg" type="number" placeholder="Número de cuenta">
-                </div>
-                <input class="btn btn-outline-light btn-lg px-5 configBtn" type="submit" value="Guardar">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input class="btn btn-outline-light btn-lg px-5 configBtn" id="idGuardarPago" type="submit" value="Guardar">
             </div>
         </form>
     </div>

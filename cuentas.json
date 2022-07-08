@@ -1,0 +1,11 @@
+
+[
+    {
+        "id": 101,
+        "cuenta": "Tarjeta de debito"
+    },
+    {
+        "id": 102,
+        "cuenta": "Transferencia bancaria"
+    }
+]

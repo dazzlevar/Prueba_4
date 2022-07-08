@@ -1,3 +1,4 @@
+from pkgutil import extend_path
 from django.db import models
 
 # Create your models here.
@@ -11,25 +12,29 @@ class Categoria(models.Model):
 
 
 class Producto(models.Model):
-    nombreProducto = models.CharField(
-        max_length=50, verbose_name='Nombre del Producto')
+    nombreProducto = models.CharField(max_length=50, verbose_name='Nombre del Producto')
     precioProducto = models.IntegerField(verbose_name='Precio del producto')
-    descripcionProducto = models.TextField(
-        verbose_name='Descripcion del producto')
-    cantidadProducto = models.IntegerField(verbose_name='Cantidad', null=True)
-    imagen = models.ImageField(upload_to='productos', null=True)
+    descripcionProducto = models.TextField(verbose_name='Descripcion del producto')
+    cantidadProducto = models.IntegerField(verbose_name='Cantidad', null = True)
+    imagen = models.ImageField(upload_to='productos', null = True)
     nombreCat = models.ForeignKey(Categoria, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nombreProducto
 
+class DescuentoCategoria(models.Model):
+    cantidad = models.IntegerField(verbose_name = 'Descuento de la categoria');
+    nombreCat = models.ForeignKey(Categoria, on_delete=models.PROTECT)
+
+class DescuentoProducto(models.Model):
+    cantidad = models.IntegerField(verbose_name = 'Descuento del producto');
+    nombreProducto = models.ForeignKey(Producto, on_delete=models.PROTECT)
 
 opciones_consultas = [
     [0, 'Consulta'],
     [1, 'Reclamo por error'],
     [2, 'Sugerencia'],
 ]
-
 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=50)
@@ -78,8 +83,6 @@ class Estado_despacho(models.Model):
     def __str__(self):
         return self.nombreEstado
 
-
-
 class Despacho(models.Model):
     nombreCliente = models.CharField(max_length=50,verbose_name='Nombre del cliente')
     apellidoCliente = models.CharField(max_length=50, verbose_name='Apellido')
@@ -91,3 +94,51 @@ class Despacho(models.Model):
 
     def __str__(self):
         return self.nombreCliente
+
+SLC = "SELECCIONAR BANCO"
+BDC = "BANCO DE CHILE"
+BCL = "BANCO INTERNACIONAL"
+STB = "SCOTIABANK CHILE"
+BCI = "BANCO DE CREDITO E INVERSIONES"
+BBE = "BANCO BICE"
+HSB = "HSBC BANK (CHILE)"
+BSC = "BANCO SANTANDER-CHILE"
+ICA = "ITAU CORPBANCA"
+BSY = "BANCO SECURITY"
+BFA = "BANCO FALABELLA"
+BRY = "BANCO RIPLEY"
+BCO = "BANCO CONSORCIO"
+SBA = "SCOTIABANK AZUL"
+BBP = "BANCO BTG PACTUAL CHILE"
+
+bancos = (
+    (SLC, "SELECCIONAR BANCO"),
+    (BDC, "BANCO DE CHILE"),
+    (BCL, "BANCO INTERNACIONAL"),
+    (STB, "SCOTIABANK CHILE"),
+    (BCI, "BANCO DE CREDITO E INVERSIONES"),
+    (BBE, "BANCO BICE"),
+    (HSB, "HSBC BANK (CHILE)"),
+    (BSC, "BANCO SANTANDER-CHILE"),
+    (ICA, "ITAU CORPBANCA"),
+    (BSY, "BANCO SECURITY"),
+    (BFA, "BANCO FALABELLA"),
+    (BRY, "BANCO RIPLEY"),
+    (BCO, "BANCO CONSORCIO"),
+    (SBA, "SCOTIABANK AZUL"),
+    (BBP, "BANCO BTG PACTUAL CHILE"),
+)
+
+tipo_cuenta = (
+    (100, 'SELECCIONAR TIPO DE CUENTA'),
+    (101, 'TARJETA DE DEBITO'),
+    (102, 'TARJETA DE CREDITO'),
+)
+
+class MetodoPago(models.Model):
+    bancoCliente = models.CharField(max_length=50, choices=bancos, default="SELECCIONAR BANCO")
+    tipo_cuenta = models.IntegerField(choices=tipo_cuenta, default=0)
+    numeroCuenta = models.IntegerField(verbose_name = "numero de cuenta", null=True)
+
+    def __str__(self):
+        return '%s %s %s'%(self.bancoCliente, self.tipo_cuenta, self.numeroCuenta)

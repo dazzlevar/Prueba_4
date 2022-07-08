@@ -1,0 +1,58 @@
+[
+    {
+        "id": 0,
+        "nombre": "BANCO DE CHILE"
+    },
+    {
+        "id": 1,
+        "nombre": "BANCO INTERNACIONAL"
+    },
+    {
+        "id": 2,
+        "nombre": "SCOTIABANK CHILE"
+    },
+    {
+        "id": 3,
+        "nombre": "BANCO DE CREDITO E INVERSIONES "
+    },
+    {
+        "id": 4,
+        "nombre": "BANCO BICE"
+    },
+    {
+        "id": 5,
+        "nombre": "HSBC BANK (CHILE)"
+    },
+    {
+        "id": 6,
+        "nombre": "BANCO SANTANDER-CHILE"
+    },
+    {
+        "id": 7,
+        "nombre": "ITAU CORPBANCA"
+    },
+    {
+        "id": 8,
+        "nombre": "BANCO SECURITY"
+    },
+    {
+        "id": 9,
+        "nombre": "BANCO FALABELLA"
+    },
+    {
+        "id": 10,
+        "nombre": "BANCO RIPLEY"
+    },
+    {
+        "id": 11,
+        "nombre": "BANCO CONSORCIO"
+    },
+    {
+        "id": 12,
+        "nombre": "SCOTIABANK AZUL"
+    },
+    {
+        "id": 13,
+        "nombre": "BANCO BTG PACTUAL CHILE"
+    }
+]

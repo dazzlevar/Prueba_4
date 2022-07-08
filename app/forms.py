@@ -1,7 +1,7 @@
 from dataclasses import field
 from tkinter.ttk import Widget
 from django import forms
-from .models import Contacto, Producto, Datos, Suscripcion, Categoria, Despacho, Estado_despacho
+from .models import Contacto, Producto, Datos, Suscripcion, Categoria, Despacho, Estado_despacho, MetodoPago
 from .validators import MaxSizeFileValidator
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -32,19 +32,19 @@ class ProductoForm(forms.ModelForm):
         fields = '__all__'
 
 class CategoriaForm(forms.ModelForm):
-    nombreCategoria = forms.CharField(min_length = 3, max_length = 50)
+    nombreCat = forms.CharField(min_length = 3, max_length = 50)
 
     def clean_nombre(self):
-        nombreCategoria = self.cleaned_data["nombreCategoria"]
-        existe = Categoria.objects.filter(nombre__iexact = nombreCategoria).exists()
+        nombreCat = self.cleaned_data["nombreCat"]
+        existe = Categoria.objects.filter(nombre__iexact = nombreCat).exists()
 
         if existe:
             raise forms.ValidationError("Este nombre ya existe")
-        return nombreCategoria
+        return nombreCat
 
     class Meta:
         model = Categoria
-        fields = ['nombreCategoria']
+        fields = ['nombreCat']
         
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -72,3 +72,36 @@ class DispatchAdminForm(forms.ModelForm):
     class Meta:
         model = Despacho
         fields = '__all__'
+
+bancos = [
+    (0, "SELECCIONAR BANCO"),
+    (1, "BANCO DE CHILE"),
+    (2, "BANCO INTERNACIONAL"),
+    (3, "SCOTIABANK CHILE"),
+    (4, "BANCO DE CREDITO E INVERSIONES"),
+    (5, "BANCO BICE"),
+    (6, "HSBC BANK (CHILE)"),
+    (7, "BANCO SANTANDER-CHILE"),
+    (8, "ITAU CORPBANCA"),
+    (9, "BANCO SECURITY"),
+    (10, "BANCO FALABELLA"),
+    (11, "BANCO RIPLEY"),
+    (12, "BANCO CONSORCIO"),
+    (13, "SCOTIABANK AZUL"),
+    (14, "BANCO BTG PACTUAL CHILE"),
+]
+
+tipo_cuenta = [
+    [0, 'SELECCIONAR TIPO DE CUENTA'],
+    [1, 'TARJETA DE DEBITO'],
+    [2, 'TARJETA DE CREDITO'],
+]
+
+class MetodoPagoForm(forms.ModelForm):
+    banco = forms.ChoiceField(choices = bancos)
+    tipo_de_cuenta = forms.ChoiceField(choices = tipo_cuenta)
+    numero_de_cuenta = forms.IntegerField(min_value=10000, max_value=9999999)
+
+    class Meta:
+        model = MetodoPago
+        fields = ['banco', 'tipo_de_cuenta', 'numero_de_cuenta']
