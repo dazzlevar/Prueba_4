@@ -38,7 +38,7 @@
         top: 73%;
         left: 29%;
         width: 17rem;
-        height: 7.4rem!important;
+        height: 4.4rem!important;
         transform: none;
     }
 
@@ -470,7 +470,8 @@
     }
 
     .suscribirse__boton {
-        left: 61%;
+        left: 56%;
+        top: 87%;
     }
 
     .welcome__flex {
