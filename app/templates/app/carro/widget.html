@@ -1,4 +1,6 @@
-<!-- Todavía estoy metiendo mano aquí por si a caso -->
+{% load mathfilters %}
+{% load humanize %}
+
 <div class="modal fade" id="ModalCarro" tabindex="-1" aria-labelledby="ModalCarroLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -26,7 +28,7 @@
                                                 </div>
                                                 <a href="{% url 'carro:restar' value.producto_id  %}" class="btn btn-primary px-3 ms-2 ">-</a>
                                             </div>
-                                            <strong class="fs-4">Suma: ${{value.precio}} </strong>
+                                            <strong class="fs-4">Suma: ${{value.precio| intcomma}} </strong>
                                         </div>
                                     {% else %}
                                         <div class="alert alert-danger">Sin productos</div>
@@ -57,11 +59,21 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush" >
-                                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 fs-4" style="background: honeydew;">
-                                            <div>
-                                                <strong>Total</strong>
-                                            </div>
-                                            <span><strong>${{importe_total_carro}}</strong></span>
+                                        <li class="list-group-item d-flex justify-content-center align-items-center border-0 px-0 mb-3 fs-4" style="background: honeydew;">
+                                            <table class="table">
+                                                <tr>
+                                                    <td>Total compra:</td>
+                                                    <td>${{importe_total_carro| intcomma}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Descuento del 5%:</td>
+                                                    <td>${{total_carro_descuento}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong> Total:</strong></td>
+                                                    <td><strong> ${{importe_total_carro|sub:total_carro_descuento| intcomma}}</strong></td>
+                                                </tr>
+                                            </table>
                                         </li>
                                     </ul>
                                     <a class="btn btn-primary btn-lg btn-block" {% if user.is_authenticated %}

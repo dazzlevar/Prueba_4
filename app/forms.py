@@ -32,19 +32,19 @@ class ProductoForm(forms.ModelForm):
         fields = '__all__'
 
 class CategoriaForm(forms.ModelForm):
-    nombreCategoria = forms.CharField(min_length = 3, max_length = 50)
+    nombreCat = forms.CharField(min_length = 3, max_length = 50)
 
     def clean_nombre(self):
-        nombreCategoria = self.cleaned_data["nombreCategoria"]
-        existe = Categoria.objects.filter(nombre__iexact = nombreCategoria).exists()
+        nombreCat = self.cleaned_data["nombreCat"]
+        existe = Categoria.objects.filter(nombre__iexact = nombreCat).exists()
 
         if existe:
             raise forms.ValidationError("Este nombre ya existe")
-        return nombreCategoria
+        return nombreCat
 
     class Meta:
         model = Categoria
-        fields = ['nombreCategoria']
+        fields = ['nombreCat']
         
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -54,7 +54,7 @@ class CustomUserCreationForm(UserCreationForm):
 class DatosForm(forms.ModelForm):
     class Meta: 
         model = Datos
-        fields = ['nombre', 'telefono', 'correo', 'metodo_pago', 'cupon']
+        fields = ['nombre', 'telefono', 'correo', 'metodo_pago']
 
 class SubForm(forms.ModelForm):
     class Meta:

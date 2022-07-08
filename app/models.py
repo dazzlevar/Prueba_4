@@ -52,7 +52,6 @@ class Datos(models.Model):
     telefono = models.IntegerField(verbose_name='Numero de contacto')
     correo = models.EmailField()
     metodo_pago = models.IntegerField(choices=opciones_pago)
-    cupon = models.IntegerField(verbose_name='Cupon de descuento')
 
     def __str__(self):
         return self.nombre

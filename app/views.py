@@ -179,7 +179,7 @@ def eliminar_categoria(request, id):
     categoria = get_object_or_404(Categoria, id = id)
     categoria.delete()
     messages.success(request, 'Eliminado correctamente')
-    return redirect(to = "listar_categoria")
+    return redirect(to = "listar_categorias")
 
 @login_required
 @permission_required('app.view_usuario')
@@ -266,9 +266,6 @@ def historial(request):
 def direcciones(request):
     return render(request, 'app/settings/settings_direcciones.html')
 
-@login_required
-def cupones(request):
-    return render(request, 'app/settings/settings_cupones.html')
 
 @login_required
 def metodos_de_pago(request):

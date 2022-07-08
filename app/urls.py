@@ -2,7 +2,7 @@ from django.db import router
 from django.urls import path, include
 from .views import SuscripcionViewset, home, registro, contacto, agregar_producto, listar_productos, \
     modificar_producto, eliminar_producto, catalogo, clima, pagar, settings, \
-    historial, direcciones, cupones, metodos_de_pago, agregar_sub, \
+    historial, direcciones, metodos_de_pago, agregar_sub, \
     listar_sub, eliminar_sub, error_404, agregar_categoria, listar_categorias, modificar_categoria, eliminar_categoria, \
     listar_usuarios, eliminar_usuario,  agregar_despacho, listar_despacho, historial_usuario, modificar_despacho, eliminar_despacho
 from .viewsLogin import login
@@ -37,7 +37,6 @@ urlpatterns = [
     path('settings/', settings, name = 'settings'),
     path('settings/historial/', historial, name = 'historial'),
     path('settings/direcciones/', direcciones, name = 'direcciones'),
-    path('settings/cupones/', cupones, name = 'cupones'),
     path('settings/metodos_de_pago/', metodos_de_pago, name = 'metodos_de_pago'),
     # path('settings/despacho/', despacho, name = 'despacho'),
     path('pagar', pagar, name = 'pagar'),
