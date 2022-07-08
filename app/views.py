@@ -22,8 +22,6 @@ class Tipo_subViewset(viewsets.ModelViewSet):
 
 def home(request):
     return render(request, 'app/home.html')
-def widget(request):
-    return render(request, 'app/carro/widget.html')
 
 def catalogo(request):
     productos = Producto.objects.all()
@@ -261,10 +259,6 @@ def settings(request):
 @login_required
 def historial(request):
     return render(request, 'app/settings/settings_historial.html')
-
-@login_required
-def direcciones(request):
-    return render(request, 'app/settings/settings_direcciones.html')
 
 
 @login_required

@@ -12,12 +12,12 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     nombreProducto = models.CharField(
-        max_length=50, verbose_name='Nombre del Producto')
-    precioProducto = models.IntegerField(verbose_name='Precio del producto')
+        max_length=50, verbose_name=' Nombre del Producto ')
+    precioProducto = models.IntegerField(verbose_name=' Precio del producto ')
     descripcionProducto = models.TextField(
-        verbose_name='Descripcion del producto')
-    cantidadProducto = models.IntegerField(verbose_name='Cantidad', null=True)
-    imagen = models.ImageField(upload_to='productos', null=True)
+        verbose_name=' Descripcion del producto ')
+    cantidadProducto = models.IntegerField(verbose_name=' Cantidad ', null=True)
+    imagen = models.ImageField(upload_to=' productos ', null=True)
     nombreCat = models.ForeignKey(Categoria, on_delete=models.PROTECT)
 
     def __str__(self):

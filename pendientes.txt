@@ -1,1 +1,2 @@
 - Permitir generar descuentos o promociones en la página principal (rol = adm) y hacer que estos descuentos sean validos al pagar
+-
