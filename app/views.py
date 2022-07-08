@@ -27,10 +27,19 @@ def widget(request):
 
 def catalogo(request):
     productos = Producto.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 8)
+        productos = paginator.page(page)
+    except:
+        raise Http404
+
     data = {
-        'productos': productos
+        'productos': productos,
+        'paginator': paginator
     }
-    
+
     return render(request, 'app/catalogo.html', data)
 
 def contacto(request):
